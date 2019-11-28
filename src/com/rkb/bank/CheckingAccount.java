@@ -9,11 +9,16 @@ public class CheckingAccount extends BankingAccount {
 		
 	}
 	
-//	public void createCheckingAccount(long balance) {
-//		if(this.minimumBalance < balance) {
-//			this(balance);
-//		}
-//		
-//	}
+	public void deopsit(long amount) {
+		long currentBalance = this.getBalance() + amount;
+		this.setBalance(currentBalance);
+	}
+	
+	public void withdraw(long amount) {
+		if((this.getBalance() - this.minimumBalance) >= amount) {
+			long currentBalance = this.getBalance() + amount;
+			this.setBalance(currentBalance);
+		}
+	}
 
 }

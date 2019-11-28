@@ -5,7 +5,7 @@ public class BankingAccount {
 		private int accountNumber;
 		private double interestRate;
 		private long balance;
-		private int minimumBalance;
+		
 		private String[] transactionHistory;
 		
 		
@@ -34,12 +34,7 @@ public class BankingAccount {
 		public void setBalance(long balance) {
 			this.balance = balance;
 		}
-		public int getMinimumBalance() {
-			return minimumBalance;
-		}
-		public void setMinimumBalance(int minimumBalance) {
-			this.minimumBalance = minimumBalance;
-		}
+		
 		public String[] getTransactionHistory() {
 			return transactionHistory;
 		}
