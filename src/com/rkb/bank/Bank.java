@@ -1,9 +1,16 @@
 package com.rkb.bank;
 
-public class Bank {
+import java.util.HashSet;
+import java.util.Set;
 
+public class Bank {
+	
+
+	public static Set<String> userNames = new HashSet<>();
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		
 
 	}
 
