@@ -25,6 +25,7 @@ public class User {
 	public User(String userName) {
 		super();
 		this.userName = userName;
+		Bank.userNames.add(userName);
 	}
 	
 	// getters and setters for fields
