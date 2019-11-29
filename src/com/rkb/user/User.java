@@ -18,17 +18,25 @@ public class User {
 	private String[] userTransactions= new String[5];
 	private int pin;
 	private String userName;
-	public String getAddress() {
-		return address;
-	}
 	
-	public User(String userName) {
+	
+	public User(String userName, String fname, String lname, String email, String address, int pinNo) {
 		super();
-		this.userName = userName;
+		//this.userName = userName;
+		this.setUserName(userName);
 		Bank.userNames.add(userName);
+		this.setFirstName(fname);
+		this.setLastName(lname);
+		this.setAddress(address);
+		this.setPin(pinNo);
+		this.setEmail(email);
+		
 	}
 	
 	// getters and setters for fields
+	public String getAddress() {
+		return address;
+	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
