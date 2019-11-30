@@ -4,9 +4,9 @@ public class BankingAccount {
 	// Instances properties or fields
 		private int accountNumber;
 		private double interestRate;
-		private long balance;
+		private double balance;
 		
-		private String[] transactionHistory;
+	
 		
 		
 		//constructors
@@ -28,18 +28,13 @@ public class BankingAccount {
 		public void setInterestRate(double interestRate) {
 			this.interestRate = interestRate;
 		}
-		public long getBalance() {
+		public double getBalance() {
 			return balance;
 		}
-		public void setBalance(long balance) {
+		public void setBalance(double balance) {
 			this.balance = balance;
 		}
 		
-		public String[] getTransactionHistory() {
-			return transactionHistory;
-		}
-		public void setTransactionHistory(String[] transactionHistory) {
-			this.transactionHistory = transactionHistory;
-		}
+		
 		
 }
