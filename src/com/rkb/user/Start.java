@@ -1,5 +1,6 @@
 package com.rkb.user;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.rkb.bank.Bank;
@@ -11,17 +12,22 @@ public class Start {
 	
 	Scanner scan = new Scanner(System.in);
 	Bank bank = new Bank();
+	private boolean exit;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Start start = new Start();
+		start.run();
 
 	}
 
 	public void run() {
 		printWelcomeMessage();
-		printChoices();
-		int choice = getChoice();
-		performAction(choice);
+		while(!exit) {
+			
+			printChoices();
+			int choice = getChoice();
+			performAction(choice);
+		}
 	}
 
 	private void performAction(int choice) {
@@ -30,16 +36,16 @@ public class Start {
 			 createAccount();
 			break;
 		case 2:
-			// deposit(long amount); to an existing account
+			 deposit(); //to an existing account
 			break;
 		case 3:
-			// withdraw(long amount); from an existing account
+			 withdraw(); //from an existing account
 			break;
 		case 4:
 			// transfer(long amount, BanckingAccount account); 
 			break;
 		case 5:
-			// printTransactions();
+			printTransactions();
 			break;
 		case 6:
 			System.out.println("Thanking you for visting our app.");
@@ -50,6 +56,79 @@ public class Start {
 			break;
 		}
 		
+	}
+
+	private void printTransactions() {
+		// TODO Auto-generated method stub
+		int accountNumber = selectAccountNumber(); // to deposit we just need the account number they want to deposit bcoz other condition is already checked.
+		if(accountNumber >= 0) {
+			
+		System.out.println(	bank.getUser(accountNumber).getAccount());
+		}
+	}
+
+	private void withdraw() {
+		// TODO Auto-generated method stub
+		int accountNumber = selectAccountNumber(); // to deposit we just need the account number they want to deposit bcoz other condition is already checked.
+		if(accountNumber >= 0) {
+			double amount = 0;
+			System.out.println("How much would you like to withdraw?");
+			try {
+				 amount = Double.parseDouble(scan.nextLine());
+			}
+			catch(NumberFormatException e) {
+				System.out.println("You have to enter the number.");
+				amount = 0;
+			}
+			bank.getUser(accountNumber).getAccount().withdraw(amount);
+		}
+		
+	}
+
+	private void deposit() {
+		int accountNumber = selectAccountNumber(); // to deposit we just need the account number they want to deposit bcoz other condition is already checked.
+		if(accountNumber >= 0) {
+			double amount = 0;
+			System.out.println("How much would you like to deposit?");
+			try {
+				 amount = Double.parseDouble(scan.nextLine());
+			}
+			catch(NumberFormatException e) {
+				System.out.println("You have to enter the number.");
+				amount = 0;
+			}
+			bank.getUser(accountNumber).getAccount().deposit(amount);
+		}
+		
+	}
+
+	private int selectAccountNumber() {
+		ArrayList<User> users = bank.getUsers();
+		if(users.size() < 1) {
+			System.out.println("There are no clients in bank");
+			return -1;
+		}
+		System.out.println("Select the account: ");
+		int i = 1;
+		for(User u: users) {
+			System.out.println((i )+ ". " + u.toString());
+			i++;
+		}
+		int account = 0;
+		System.out.println("Enter your selected account");
+		try {
+			account = Integer.parseInt(scan.nextLine()) -1;
+		}
+		catch(NumberFormatException e) {
+			System.out.println("You have to enter the number.");
+			account = -1;
+		}
+		if(account < 0 || account > users.size()) {
+			System.out.println("Invalid account selected");
+			account = -1;
+		}
+		
+		return account;
 	}
 
 	private void createAccount() {
@@ -108,7 +187,8 @@ public class Start {
 			 account = new SavingAccount(deposit);
 		 }
 		
-		
+		User user = new User(fname, lname, pin, account);
+		bank.add(user);
 	}
 
 	private int getChoice() {
