@@ -42,7 +42,7 @@ public class Start {
 			 withdraw(); //from an existing account
 			break;
 		case 4:
-			// transfer(long amount, BanckingAccount account); 
+			 transfer(); 
 			break;
 		case 5:
 			printTransactions();
@@ -56,6 +56,36 @@ public class Start {
 			break;
 		}
 		
+	}
+
+	private void transfer() { // this code needs to be refactored again 
+		// here I should ask user to give the account that they want to transfer to
+		// and I should ask user to give the account that they want to transfer from
+		// and ask for the amount they want to transfer
+		System.out.println("You want to transfer the Money");
+		System.out.println("Choose the account you want to transfer the money from");
+		int accountNumber = selectAccountNumber(); // to deposit we just need the account number they want to deposit bcoz other condition is already checked.
+		
+		double amount = 0;
+		if(accountNumber >= 0) {
+			
+			System.out.println("How much would you like to transfer?");
+			try {
+				 amount = Double.parseDouble(scan.nextLine());
+			}
+			catch(NumberFormatException e) {
+				System.out.println("You have to enter the number.");
+				amount = 0;
+			}
+			bank.getUser(accountNumber).getAccount().withdraw(amount);
+		}
+		System.out.println("choose the account you want to transfer the money to");
+		 accountNumber = selectAccountNumber(); // to deposit we just need the account number they want to deposit bcoz other condition is already checked.
+		if(accountNumber >= 0) {
+			
+			bank.getUser(accountNumber).getAccount().deposit(amount);
+		}
+		System.out.println("your transfer is successful");
 	}
 
 	private void printTransactions() {

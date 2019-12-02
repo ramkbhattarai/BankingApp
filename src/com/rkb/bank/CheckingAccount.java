@@ -30,7 +30,7 @@ public class CheckingAccount extends BankingAccount {
 //	
 //	public void withdraw(double amount) {
 //		if((this.getBalance() - this.minimumBalance) >= amount) {
-//			double currentBalance = this.getBalance() + amount;
+//			double currentBalance = this.getBalance() - amount;
 //			this.setBalance(currentBalance);
 //		}
 //	}

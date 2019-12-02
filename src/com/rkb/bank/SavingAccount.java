@@ -1,7 +1,7 @@
 package com.rkb.bank;
 
 public class SavingAccount extends BankingAccount{
-	//private final int minimumBalance = 1000;
+	private final int minimumBalance = 1000;
 	private  String accountType = "Saving";
 	
 	public SavingAccount(double balance) {
